@@ -1,0 +1,205 @@
+//author：蓝城兄弟信息技术有限公司
+home-project-inside-crontab-list {
+    .home-project-inside-list {
+        header {
+            .title-ul {
+                @extend %COMMON-TITLE-UL;
+            }
+
+            .search-li {
+                @extend %SEARCH-UL;
+                margin-left: 0;
+            }
+
+            .view-btn-li {
+                margin-left: 5px;
+
+                >p {
+                    @include eo-line(30px);
+                    margin-top: 9px;
+
+                    a {
+                        background-color: #fff;
+                        @include eo-line(30px);
+                        display: inline-block;
+                        text-align: center;
+                        padding: 0 10px;
+                        font-size: 12px;
+                        border: 1px solid #e5e5e5;
+
+                        .iconfont {
+                            font-size: 12px;
+                            margin-right: 5px;
+                        }
+
+                        &:nth-child(n+2) {
+                            border-left: none;
+                        }
+                    }
+
+                    .view-common-btn {
+                        float: left;
+
+                        &:first-child {
+                            border-radius: 3px 0 0 3px;
+                        }
+
+                        &:last-child {
+                            margin-left: 0;
+                            border-left: none;
+                            border-radius: 0 3px 3px 0;
+                        }
+                    }
+
+                    .elem-active {
+                        background-color: #43A047;
+                        color: #fff;
+
+                        .iconfont {
+                            color: #fff;
+                        }
+                    }
+
+                }
+            }
+        }
+
+        .first-level-article {
+            @extend %COMMON-CONTAINER-STYLE;
+
+            table {
+                width: 100%;
+                border-spacing: 0;
+                text-align: left;
+                -webkit-border-radius: 3px;
+                border-radius: 3px;
+                table-layout: fixed;
+            }
+
+            thead tr {
+                height: 40px;
+            }
+
+            tbody {
+                tr {
+                    height: 43px;
+                    cursor: pointer;
+
+                    .operate-td {
+                        overflow: visible;
+                    }
+
+                    .more-btn {
+                        display: inline-block;
+                        line-height: initial;
+                    }
+
+                    td {
+                        cursor: inherit;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        border-bottom: 1px solid #d9d9d9;
+                        padding-left: 15px;
+                    }
+                }
+
+                tr:hover {
+                    background-color: #eceaea;
+                }
+            }
+
+            .eo-operate-btn {
+                padding-left: 10px;
+                border-left: 1px solid #d9d9d9;
+                font-size: 12px;
+            }
+
+            .eo-operate-btn:first-child {
+                border-left: none;
+                padding-left: 0;
+            }
+
+            th {
+                padding-left: 15px;
+                overflow: hidden;
+                border-color: #d9d9d9;
+            }
+
+            .po_re {
+                position: relative;
+            }
+
+            .divide_line_ldcc {
+                border-right: 1px solid #d9d9d9;
+                right: 0;
+                top: 0;
+                position: absolute;
+                height: 100%;
+            }
+
+            .ccr {
+                cursor: col-resize;
+            }
+
+            .n_list1_style {
+                background-color: #fff;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.12);
+            }
+
+            .n_dv_c {
+                border-color: #d9d9d9;
+            }
+
+            .thead_container_ldcc {
+                background-color: #f8f8f8;
+                border-bottom: 1px solid #d9d9d9;
+                z-index: 1;
+                width: -webkit-fit-content;
+                width: -moz-fit-content;
+                width: fit-content;
+                position: relative;
+                overflow-x: hidden;
+            }
+
+            .more-function {
+                text-align: left;
+                position: fixed;
+                right: 10px;
+                border-style: solid;
+                border-width: 1px;
+                -webkit-border-radius: 3px;
+                border-radius: 3px;
+                z-index: 2;
+
+                li {
+                    height: 35px;
+                    line-height: 35px;
+                    cursor: pointer;
+                    padding: 0 20px;
+                }
+
+                li:hover {
+                    background-color: #eceaea;
+                }
+
+                .eo_theme_gd_li_fli {
+                    color: #555;
+                }
+
+                button {
+                    background: inherit;
+                    border: none;
+                }
+            }
+
+            .elem-active {
+
+                &:nth-child(odd),
+                &:nth-child(even) {
+                    background-color: #ffecb3;
+                }
+            }
+        }
+    }
+}

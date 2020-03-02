@@ -1,0 +1,116 @@
+<div class="home-project-inside-history home-project-inside-div">
+    <header>
+        <ul class="title-ul">
+            <li class="btn-group-li pull-left">
+                <a class="common-btn default-btn" ng-click="$ctrl.data.fun.back()">
+                    <span class="iconfont icon-xiangzuo"></span>{{$ctrl.data.info.filter.taskList}}
+                </a>
+            </li>
+        </ul>
+    </header>
+
+    <article class="eo_theme_ldt first_level_article">
+        <div class="conatiner_ldcc">
+            <div class="thead_container_ldcc">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="th_drag_0_ldcc po_re w_200"><span>测试完成时间</span>
+                                <div class="divide_line_ldcc">&nbsp;</div>
+                            </th>
+                            <th class="th_drag_1_ldcc po_re w_60"><span><span>正确率</span>
+                                    <tip-directive input="<p>测试任务正确率=测试通过的用例个数/被测用例的总个数</p>">
+                                        <span class="iconfont icon-pinglun"></span>
+                                        <div class="tips-message eo-tip-container"
+                                            style="margin-left: -5px;margin-top:-32px;">
+                                            <div>
+                                                <div class="message-li"
+                                                    id="tip-directive-js-2a41a6f1-f6ee-46b1-8e92-5691f2857c05">
+                                                    <p>测试任务正确率=测试通过的用例个数/被测用例的总个数</p>
+                                                </div>
+                                                <div class="arrow-li"></div>
+                                            </div>
+                                        </div>
+                                    </tip-directive>
+                                </span>
+                                <div class="divide_line_ldcc">&nbsp;</div>
+                            </th>
+                            <th class="th_drag_2_ldcc po_re" ng-show="$ctrl.data.showObject.reportType==1">
+                                <span>任务名称</span>
+                                <div class="divide_line_ldcc">&nbsp;</div>
+                            </th>
+                            <th class="th_drag_3_ldcc po_re w_100" ng-show="$ctrl.showObject.reportType==0">
+                                <span>类型</span>
+                                <div class="divide_line_ldcc">&nbsp;</div>
+                            </th>
+                            <th class="th_drag_4_ldcc po_re w_150"><span>用例</span>
+
+                                <div class="divide_line_ldcc">&nbsp;</div>
+                            </th><!-- ngIf: $ctrl.authorityObject.operate&&$ctrl.mainObject.item.operate -->
+                            <th class="w_150" ng-style="$ctrl.mainObject.item.operate.style"
+                                ng-if="$ctrl.data.authorityObject.operate&amp;&amp;$ctrl.data.mainObject.item.operate"
+                                ng-hide="$ctrl.mainObject.setting.batchInitStatus!=='open'&amp;&amp;$ctrl.otherObject.batch.isOperating">
+                                操作</th><!-- end ngIf: $ctrl.authorityObject.operate&&$ctrl.mainObject.item.operate -->
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="tbody_container_ldcc">
+                <table>
+                    <tbody class="list-default-tbody">
+                        <!-- ngRepeat: ($outerIndex,item) in $ctrl.list -->
+                        <tr eo-attr-index="0" eo-attr-depth="" class="unhover-tr"
+                            ng-style="$ctrl.mainObject.setting.style" ng-class="{}"
+                            ng-repeat="($outerIndex,item) in $ctrl.data.list"
+                            ng-click="$ctrl.fun.click({item:item,$index:$index,$event:$event})"
+                            ng-init="item.$index=$index">
+                            <td class="w_200">{{ item.finished }}</td>
+                            <td class="w_60"><span
+                                    ng-class="{'cg':item.successRate==='100.00','cr':item.successRate&amp;&amp;item.successRate!=='100.00'}"
+                                    class="cg">{{ item.passrate * 100}}%</span></td>
+                            <td ng-show="$ctrl.data.showObject.reportType==1">{{ item.taskname }}</td>
+                            <td class="w_100" ng-show="$ctrl.data.showObject.reportType==0">场景</td>
+                            <td class="w_150"><button type="button" class="eo_theme_btn_default show_btn_hair"
+                                    ng-click="$ctrl.data.fun.bind('add', {item:item})">查看</button></td>
+                            <!-- ngIf: $ctrl.authorityObject.operate -->
+                            <!-- <td class="operate-td w_150" ng-if="$ctrl.authorityObject.operate"> -->
+                            <td class="operate-td w_150">
+                                <div>
+                                    <div ng-mouseleave="item.clickMore=false;" class="more-btn eo-operate-btn"
+                                        ng-click="$ctrl.data.fun.showMore({item:item,$index:$index,$event:$event})">
+                                        下载<span class="more-btn-icon iconfont icon-xiangxia"></span>
+                                        <ul class="more-function n_dv_c n_list1_style po_ab"
+                                            ng-show="item.clickMore==true">
+                                            <li class="eo_theme_gd_li_fli"
+                                                ng-click="$ctrl.data.fun.download({item:item,$index:$outerIndex,$event:$event})">
+                                                全部</li>
+                                            <li class="eo_theme_gd_li_fli"
+                                                ng-click="$ctrl.data.fun.download({item:item,$index:$outerIndex,$event:$event,'type':'error'})">
+                                                仅错误报告</li>
+                                        </ul>
+                                    </div><button class="eo-operate-btn"
+                                        ng-click="$ctrl.data.fun.deleteHistory({item:item,$index:$outerIndex,$event:$event})">删除</button>
+                                </div>
+                            </td><!-- end ngRepeat: ($outerIndex,item) in $ctrl.list -->
+                        </tr>
+                    </tbody>
+                </table><!-- ngIf: $ctrl.list.length===0 -->
+            </div>
+        </div>
+    </article>
+
+
+
+    <footer class="pageFooter" ng-if="$ctrl.data.list.length>0">
+        <uib-pagination total-items="$ctrl.data.info.pagination.logCount"
+            items-per-page="$ctrl.data.interaction.request.pageSize" ng-model="$ctrl.data.interaction.request.page"
+            max-size="$ctrl.data.info.pagination.maxSize" class="pagination-sm " boundary-link-Number="true"
+            rotate="false" next-text="&#xe684;" previous-text="&#xe685;" ng-change="$ctrl.data.fun.pageChange()">
+        </uib-pagination>
+
+    </footer>
+    <div load-directive="$ctrl.data.fun.init(arg)">
+    </div>
+
+</div>
+<div oc-lazy-load="$ctrl.data.constant.lazyload"></div>

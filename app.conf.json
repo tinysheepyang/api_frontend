@@ -1,0 +1,27 @@
+{
+  "development": {
+    "serverUrl": "/danlan/",
+    "isDebug": true,
+    "assetUrl": "",
+    "COOKIE_CONFIG": {
+      "path": "/",
+      "domain": "localhost"
+    }
+  },
+  "production": {
+    "serverUrl": "/danlan/",
+    "isDebug": false,
+    "assetUrl": "",
+    "COOKIE_CONFIG": {
+      "path": "/",
+      "domain": ""
+    }
+  },
+  "test": {
+    "serverUrl": "/danlan/",
+    "isDebug": false,
+    "COOKIE_CONFIG": {
+      "domain": "localhost"
+    }
+  }
+}

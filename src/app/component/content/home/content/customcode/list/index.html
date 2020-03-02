@@ -1,0 +1,126 @@
+<div class="public-resource-list">
+    <menu-common-component>
+        <ul class="common_menu_ul m0_style">
+            <li ng-repeat="item in $ctrl.mainObject.list"
+                ng-hide="$ctrl.mainObject.setting.batch&amp;&amp;$ctrl.otherObject.batch.isOperating&amp;&amp;!item.batchOperatingShow"
+                class="list_item_mcc pull-left" ng-class="{'menu-li m_i_tab_style':item.type=='tabs'}"
+                ng-switch="item.type">
+
+                <p ng-switch-when="btn" class="common-btn-list common-btn-list-first"
+                    ng-class="{'common-btn-list-first':$index==0}">
+                    <button ng-repeat="btnItem in item.btnList" class="danlan_theme_btn_success block-btn common-btn"
+                        ng-click="$ctrl.data.fun.edit()">
+                        <span class="iconfont icon-tianjia pull-left" ng-if="btnItem.icon"></span>
+                        <span>通用函数</span>
+                    </button>
+                </p>
+
+            </li>
+            <li ng-if="$ctrl.mainObject.setting.batch&amp;&amp;$ctrl.authorityObject[$ctrl.mainObject.setting.batchAuthority||'edit']"
+                ng-hide="$ctrl.otherObject.batch.isOperating" class="pull-left ng-scope">
+                <p class="common-btn-list" ng-class="{'common-btn-list-first':$ctrl.mainObject.list.length===0}"><button
+                        class="common-btn" ng-click="$ctrl.fun.batchDefault()"
+                        ng-disabled="$ctrl.otherObject.isBatchDisabled"><span
+                            class="iconfont icon-xinzengdaohangliebiao pull-left"></span>批量操作</button></p>
+            </li>
+
+            <li ng-if="$ctrl.mainObject.setting.batch" ng-show="$ctrl.otherObject.batch.isOperating"
+                class="pull-left menu-mr15 f_row f_ac batch_cancel_ldcc"><button class="common-btn"
+                    ng-click="$ctrl.fun.batchCancel()"><span class="iconfont icon-chexiao pull-left"></span>
+                    <span>取消</span></button><span class="vertical_divide_line_mdcc ml15" ng-if="!$last">|</span>
+            </li>
+            <li ng-repeat="item in $ctrl.mainObject.batchList" ng-show="$ctrl.otherObject.batch.isOperating"
+                class="pull-left f_row f_ac ng-hide menu-ml0"
+                ng-class="{'menu-li m_i_tab_style':item.type=='tabs','menu-ml0':$first}" ng-switch="item.type"
+                ng-if="$ctrl.mainObject.setting.batch&amp;&amp;!item.authority||$ctrl.authorityObject[item.authority]">
+                <!-- ngSwitchWhen: btn -->
+                <div ng-switch-when="btn" class="common-btn-list f_row ng-scope common-btn-list-first"
+                    ng-class="{'common-btn-list-first':$index==0}">
+                    <!-- ngRepeat: btnItem in item.btnList -->
+                    <div ng-repeat="btnItem in item.btnList">
+                        <!-- ngIf: !$first --> <button class=" common-btn"
+                            button-set-disable-directive="$ctrl.fun.common(btnItem.fun,{item:btnItem})"
+                            ng-show="!item.showPoint||($ctrl.showObject[item.showPoint][item.showVariable]==btnItem.show)"
+                            ng-disabled="(!item.disabledPoint&amp;&amp;$ctrl.otherObject.batch.query.length==0)||(item.disabledPoint&amp;&amp;(item.disabledVariable?$ctrl.otherObject[item.disabledPoint][item.disabledVariable]==btnItem.disabled:$ctrl.otherObject[item.disabledPoint]==btnItem.disabled))"
+                            disabled="disabled"><span>删除</span>
+                    </div><!-- end ngSwitchWhen: -->
+            </li>
+        </ul>
+    </menu-common-component>
+    <list-default-common-component class="list_container_flpc">
+        <div class="common_scss_list" inner-html-common-directive="" html="$ctrl.data.tableHtml">
+            <article class="danlan_theme_ldt first_level_article">
+                <div class="conatiner_ldcc">
+                    <div class="thead_container_ldcc">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="select_checkbox w_30 ng-hide"
+                                        ng-show="$ctrl.otherObject.batch.isOperating"><button type="button"
+                                            ng-click="$ctrl.fun.selectAll()" class="eo-checkbox iconfont"
+                                            ng-class="{'icon-duihao':$ctrl.otherObject.batch.selectAll==true}">&nbsp;</button>
+                                    </th>
+                                    <th class="th_drag_0_ldcc po_re"
+                                        ng-class="{'hover_th_ldcc':$ctrl.mainObject.item.default[0].sort&amp;&amp;(!$ctrl.otherObject.batchMenu.isOperating&amp;&amp;(!$ctrl.otherObject.batch.isOperating||$ctrl.mainObject.setting.batchInitStatus==='open'))}">
+                                        <span>函数描述</span>
+                                        <div class="divide_line_ldcc">&nbsp;</div>
+                                    </th>
+                                    <th class="th_drag_1_ldcc po_re"
+                                        ng-class="{'hover_th_ldcc':$ctrl.mainObject.item.default[1].sort&amp;&amp;(!$ctrl.otherObject.batchMenu.isOperating&amp;&amp;(!$ctrl.otherObject.batch.isOperating||$ctrl.mainObject.setting.batchInitStatus==='open'))}">
+                                        <span><span>函数调用名称</span><span class="iconfont icon-yiwen1 dui-tips ml5"
+                                                data-tooltip="可以在API自动化测试用例中调用"></span></span>
+
+                                        <div class="divide_line_ldcc ">&nbsp;</div>
+                                    </th><!-- ngIf: $ctrl.authorityObject.operate&&$ctrl.mainObject.item.operate -->
+                                    <th class="w_200" ng-style="$ctrl.mainObject.item.operate.style">
+                                        操作</th>
+                                    <!-- end ngIf: $ctrl.authorityObject.operate&&$ctrl.mainObject.item.operate -->
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="tbody_container_ldcc">
+                        <table>
+                            <tbody class="list-default-tbody">
+                                <!-- ngRepeat: ($outerIndex,item) in $ctrl.codeList -->
+                                <tr ng-repeat="($outerIndex,item) in $ctrl.codeList"
+                                    ng-click="$ctrl.data.fun.click({item:item,$index:$index,$event:$event})"
+                                    ng-init="item.$index=$index" class="hover-tr">
+                                    <td class="select_checkbox w_30"
+                                        ng-show="$ctrl.otherObject.batch.isOperating==true"><button type="button"
+                                            class="eo-checkbox iconfont"
+                                            ng-class="{'icon-duihao':$ctrl.otherObject.batch.indexAddress[item.functionID]}">&nbsp;</button>
+                                    </td>
+                                    <td class="  ">
+                                        <span>{{item.name}}</span></td>
+                                    <td>danlan_globalFunction_<span class="fn_text_flpc">{{item.function_name}}</span>
+                                    </td>
+                                    <td class="operate-td w_200">
+                                        <div ng-show="$ctrl.data.info.userID==item.user"><button
+                                                class="danlan-operate-btn"
+                                                ng-click="$ctrl.data.fun.edit({item:item,$event:$event})">编辑</button><button
+                                                class="danlan-operate-btn"
+                                                ng-click="$ctrl.data.fun.delete({item:item,$index:$index,switch:0,$event:$event})">删除</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </list-default-common-component>
+    <div move-tip-directive="" parent-class-name="list_container_flpc" able-class-name="unhover-tr"
+        tips-style="{&quot;left&quot;:20}" tips-text="项目内无法修改全局函数，请前往工作空间中修改" class="ng-isolate-scope"></div>
+    <!-- <loading-common-component fun="$ctrl.fun.init(arg)" class="ng-isolate-scope">
+        <div class="loading-content ng-hide" ng-hide="$ctrl.data.isEnd">
+            <div class="loading f_row_ac f_jc">
+                <div class="container_lcc">
+                    <div class="loading_icon_container_lcc h_50"><span
+                            class="iconfont icon-jiazai_shuang_o fs18"></span></div><span>正在载入</span>
+                </div>
+            </div>
+        </div>
+    </loading-common-component> -->
+</div>

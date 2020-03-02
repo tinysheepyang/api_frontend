@@ -1,0 +1,310 @@
+<div class="home-project-inside-edit home-project-inside-div">
+    <header>
+        <ul class="title-ul">
+            <li class="btn-group-li pull-left">
+                <a class="common-btn default-btn" ng-click="$ctrl.data.fun.back()">
+                    <span class="iconfont icon-xiangzuo"></span>{{$ctrl.data.info.filter.taskList}}
+                </a>
+            </li>
+
+            <li class="btn-group-li pull-right">
+                <button class="eo-button-success common-btn "
+                    button-set-disable-directive="$ctrl.data.fun.requestProcessing({status:0})"
+                    ng-if="!$ctrl.data.interaction.response.taskInfo.taskID">
+                    {{'01210014'|translate}}
+                </button>
+                <button class="eo-button-success common-btn last-btn "
+                    ng-hide="!$ctrl.data.interaction.response.taskInfo.taskID||$ctrl.data.info.reset.type==2"
+                    button-set-disable-directive="$ctrl.data.fun.requestProcessing({status:1})">
+                    {{'01210015'|translate}}
+                </button>
+                <button class="eo-button-success common-btn last-btn"
+                    ng-click="$ctrl.data.fun.requestProcessing({status:2})">
+                    {{'01210016'|translate}}
+                </button>
+            </li>
+        </ul>
+    </header>
+
+    <article class="first_level_article">
+        <div class="first_part eo-tab-container">
+            <ng-form name="editForm">
+                <ul>
+                    <li>
+                        <ul>
+                            <li class="pull-left first-select-li"><b>分组：</b></li>
+                            <li class="pull-left">
+                                <select class="eo-input " ng-model="$ctrl.data.interaction.response.taskInfo.groupID"
+                                    ng-options="group.groupID as group.groupName for group in $ctrl.data.info.group.parent"
+                                    ng-change="$ctrl.data.fun.change.group('first-level')">
+                                </select>
+                            </li>
+                            <li class="pull-left">
+                                <select class="eo-input"
+                                    ng-model="$ctrl.data.interaction.response.taskInfo.childGroupID"
+                                    ng-options="group.groupID as group.groupName for group in $ctrl.data.info.group.child"
+                                    ng-change="$ctrl.data.fun.change.group('second-level')">
+                                </select>
+                            </li>
+                            <li class="pull-left">
+                                <select class="eo-input"
+                                    ng-model="$ctrl.data.interaction.response.taskInfo.grandSonGroupID"
+                                    ng-options="group.groupID as group.groupName for group in $ctrl.data.info.group.grandson">
+                                </select>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="common-ul">
+                            <li class="pull-left first-select-li"><b>名称</b> <span class="eo-status-error">*</span></li>
+                            <li class="common-li"><input class="eo-input" type="text" name="name"
+                                    ng-model="$ctrl.data.interaction.response.taskInfo.taskName"
+                                    ng-class="{'eo-input-error':($ctrl.data.input.submitted&amp;&amp;editForm.name.$invalid)}"
+                                    maxlength="255" required="">
+
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="common-ul">
+                            <li class="pull-left first-select-li"><b>备注</b></li>
+                            <li class="common-li"><input class="eo-input" type="text" name="remark"
+                                    ng-model="$ctrl.data.interaction.response.taskInfo.taskRemark" maxlength="255"></li>
+                        </ul>
+                    </li>
+                </ul>
+            </ng-form>
+        </div>
+        <div class="item_part eo-tab-container">
+
+            <div class="eo-tab-menu">
+                <div class="pull-left item-tab active-item">测试设置 <span class="eo-status-error" style="font-size: 1px"><a
+                            href="http://www.chenxm.cc/article/829.html" target="_Blank">定时任务采用
+                            APScheduler实现</a></span></div>
+            </div>
+            <div class="time-part">
+                <div>
+                    <p><label class="title-label">类型 <span class="eo-status-error">*</span></label>
+                        <select class="eo-input w_250" ng-model="$ctrl.data.interaction.response.taskInfo.cycle"
+                            ng-change="$ctrl.data.fun.change.timerType($event)">
+                            <option value="0">cron(周期 Linux crontab)</option>
+                            <option value="1">interval(间隔)</option>
+                            <option value="2">date(单次)</option>
+
+                        </select>
+                    </p>
+                    <p ng-show="$ctrl.data.interaction.response.taskInfo.taskCycle==0"
+                        ng-class="{'eo-status-error':$ctrl.data.current.timeIllegal}"><label class="title-label">月
+                        </label>
+                        <input class="eo-input" type="text" name="month" ng-model="$ctrl.data.info.time.month"
+                            ng-class="{'eo-input-error':($ctrl.data.input.submitted)}" maxlength="255" required=""
+                            placeholder="月（范围1-12）">
+                    </p>
+                    <p ng-show="$ctrl.data.interaction.response.taskInfo.taskCycle==0 || $ctrl.data.interaction.response.taskInfo.taskCycle==1"
+                        ng-class="{'eo-status-error':$ctrl.data.current.timeIllegal}"><label class="title-label">周
+                        </label>
+                        <input class="eo-input" type="text" name="week" ng-model="$ctrl.data.info.time.week"
+                            ng-class="{'eo-input-error':($ctrl.data.input.submitted)}" maxlength="255" required=""
+                            placeholder="周（范围1-53）">
+                    </p>
+                    <p ng-show="$ctrl.data.interaction.response.taskInfo.taskCycle==0 || $ctrl.data.interaction.response.taskInfo.taskCycle==1"
+                        ng-class="{'eo-status-error':$ctrl.data.current.timeIllegal}"><label class="title-label">日
+                        </label>
+                        <input class="eo-input" type="text" name="day" ng-model="$ctrl.data.info.time.day"
+                            ng-class="{'eo-input-error':($ctrl.data.input.submitted)}" maxlength="255" required=""
+                            placeholder="日（范围1-31）">
+                    </p>
+                    <p ng-show="$ctrl.data.interaction.response.taskInfo.taskCycle==0"
+                        ng-class="{'eo-status-error':$ctrl.data.current.dateIllegal}" class=""><label
+                            class="title-label">星期</label>
+                        <input class="eo-input" type="text" name="day_of_week"
+                            ng-model="$ctrl.data.info.time.day_of_week"
+                            ng-class="{'eo-input-error':($ctrl.data.input.submitted)}" maxlength="255" required=""
+                            placeholder="周内第几天或者星期几（范围0-6或者mon,tue,wed,thu,fri,stat,sun）">
+                    </p>
+                    <p ng-show="$ctrl.data.interaction.response.taskInfo.taskCycle==0||$ctrl.data.interaction.response.taskInfo.taskCycle==1"
+                        ng-class="{'eo-status-error':$ctrl.data.current.timeIllegal}"><label class="title-label">小时
+                            <span class="eo-status-error">*</span></label>
+                        <input class="eo-input" type="text" name="hour" ng-model="$ctrl.data.info.time.hour"
+                            ng-class="{'eo-input-error':($ctrl.data.input.submitted&amp;&amp;editForm.hour.$invalid)}"
+                            maxlength="255" required="" placeholder="时（0-23）">
+                    </p>
+                    <p ng-show="$ctrl.data.interaction.response.taskInfo.taskCycle==0||$ctrl.data.interaction.response.taskInfo.taskCycle==1"
+                        ng-class="{'eo-status-error':$ctrl.data.current.timeIllegal}"><label class="title-label">分钟
+                            <span class="eo-status-error">*</span></label>
+                        <input class="eo-input" type="text" name="minute" ng-model="$ctrl.data.info.time.minute"
+                            ng-class="{'eo-input-error':($ctrl.data.input.submitted&amp;&amp;editForm.minute.$invalid)}"
+                            maxlength="255" required="" placeholder="分（0-59）">
+                    </p>
+                    <p ng-show="$ctrl.data.interaction.response.taskInfo.taskCycle==1"
+                        ng-class="{'eo-status-error':$ctrl.data.current.timeIllegal}"><label class="title-label">秒钟
+                            <span class="eo-status-error">*</span></label>
+                        <input class="eo-input" type="text" name="second" ng-model="$ctrl.data.info.time.second"
+                            ng-class="{'eo-input-error':($ctrl.data.input.submitted)}" maxlength="255" required=""
+                            placeholder="秒（0-59）">
+                    </p>
+                    <p ng-show="$ctrl.data.interaction.response.taskInfo.taskCycle==1 || $ctrl.data.interaction.response.taskInfo.taskCycle==0"
+                        ng-class="{'eo-status-error':$ctrl.data.current.timeIllegal}"><label
+                            class="title-label">开始时间</label>
+                        <input class="eo-input" type="text" name="starttime" ng-model="$ctrl.data.info.time.starttime"
+                            ng-class="{'eo-input-error':($ctrl.data.input.submitted)}" maxlength="255" required=""
+                            placeholder="2009-11-06 09:30:05">
+                    </p>
+                    <p ng-show="$ctrl.data.interaction.response.taskInfo.taskCycle==1 || $ctrl.data.interaction.response.taskInfo.taskCycle==0"
+                        ng-class="{'eo-status-error':$ctrl.data.current.timeIllegal}"><label
+                            class="title-label">结束时间</label>
+                        <input class="eo-input" type="text" name="endtime" ng-model="$ctrl.data.info.time.endtime"
+                            ng-class="{'eo-input-error':($ctrl.data.input.submitted)}" maxlength="255" required=""
+                            placeholder="2009-11-06 16:30:05">
+                    </p>
+                    <p ng-show="$ctrl.data.interaction.response.taskInfo.taskCycle==2"
+                        ng-class="{'eo-status-error':$ctrl.data.current.timeIllegal}"><label
+                            class="title-label">执行时间<span class="eo-status-error">*</span></label>
+                        <input class="eo-input" type="text" name="runtime" ng-model="$ctrl.data.info.time.runtime"
+                            ng-class="{'eo-input-error':($ctrl.data.input.submitted)}" maxlength="255" required=""
+                            placeholder="'2009-11-06 16:30:05'">
+                    </p>
+                    <p><label class="title-label">执行方式<span class="eo-status-error">*</span></label>
+                        <select class="eo-input w_250" ng-model="$ctrl.data.interaction.response.taskInfo.type">
+                            <option value="0">串行测试</option>
+                            <option value="1">并行测试</option>
+                        </select>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <div class="item_part eo-tab-container">
+            <div class="eo-tab-menu mt20">
+                <div class="pull-left item-tab active-item">用例列表</div>
+            </div>
+            <div>
+                <header class="plr15"><button class="eo_theme_btn_success change-type-btn send-format"
+                        ng-click="$ctrl.data.fun.bind('add')"><span class="iconfont icon-jiahao"></span>添加用例</button>
+                </header>
+                <table class="thead-div">
+                    <thead>
+                        <tr>
+                            <td class="plr5 w_300">{{'0121615'|translate}}</td>
+                            <!-- <td class="plr5 w_200">{{'012100215'|translate}}</td> -->
+                            <td class="plr5 w_200">{{'01010128'|translate}}</td>
+                            <td class="plr5 w_200">{{'0121616'|translate}}</td>
+                            <td class="plr5 w_200">{{'01005'|translate}}</td>
+                        </tr>
+                    </thead>
+                </table>
+                <ul class="response-form-ul">
+                    <li class="elem-hover-li"
+                        ng-repeat="item in $ctrl.data.interaction.response.taskInfo.caseList track by $index">
+                        <table class="common-table">
+                            <tbody>
+
+                                <td class="plr5 w_300">
+                                    <span>{{item.caseName}}</span>
+                                </td>
+                                <!-- <td class="plr5 w_200">
+                                    <span>{{item.groupName}}</span>
+                                </td> -->
+                                <td class="plr5 w_200">
+                                    <span>{{item.userNickName}}</span>
+                                </td>
+                                <td class="plr5 w_200">
+                                    <span>{{item.updateTime}}</span>
+                                </td>
+                                <td class="plr5 w_200">
+                                    <label>
+                                        <a class="iconfont icon-shanchu number-label"
+                                            ng-click="$ctrl.data.fun.resultList.delete({$index:$index})"></a>
+                                    </label>
+                                </td>
+                            </tbody>
+                        </table>
+                    </li>
+                </ul>
+                <div class="eo-none-tr tac" ng-hide="$ctrl.data.interaction.response.taskInfo.caseList.length>0">
+                    暂未添加任何用例
+                </div>
+            </div>
+        </div>
+        <div class="item_part eo-tab-container">
+            <div class="eo-tab-menu mt20">
+                <div class="pull-left item-tab active-item">环境设置</div>
+            </div>
+            <div class="env-part time-part">
+                <div class="text-p">
+                    <ul>
+                        <li class="env-li">
+                            <select class="eo-input " ng-model="$ctrl.data.interaction.response.taskInfo.envID"
+                                ng-options="env.envID as env.envName for env in $ctrl.data.service.home.envObject.object.model"
+                                ng-change="$ctrl.data.fun.change.group('first-level')">
+                            </select>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <div class="item_part eo-tab-container">
+            <!-- ngIf: $ctrl.data.interaction.response.taskInfo.taskStatus -->
+            <div class="eo-tab-menu mt10" ng-if="$ctrl.data.interaction.response.taskInfo.taskStatus">
+                <div class="pull-left item-tab active-item">通知设置</div>
+            </div><!-- end ngIf: $ctrl.data.interaction.response.taskInfo.taskStatus -->
+            <form name="EmailForm" class="notify-part">
+                <!-- ngIf: $ctrl.data.interaction.response.taskInfo.taskStatus -->
+                <div class="time-part" ng-if="$ctrl.data.interaction.response.taskInfo.taskStatus">
+                    <div>
+                        <p>
+                            <select class="eo-input w_250"
+                                ng-model="$ctrl.data.interaction.response.taskInfo.notification">
+                                <option value="0">关闭</option>
+                                <option value="1">仅成功通知</option>
+                                <option value="2">仅失败通知</option>
+                                <option value="3">全部通知</option>
+                            </select>
+                        </p>
+                        <div class="mt10 eo-block-container">
+                            <table class="thead-div">
+                                <thead>
+                                    <tr>
+                                        <td class="plr5 w_300">{{'0306'|translate}}</td>
+                                        <td class="plr5 w_300">{{'01005'|translate}}</td>
+                                    </tr>
+                                </thead>
+                            </table>
+                            <ul class="request-form-ul">
+                                <li class="elem-hover-li"
+                                    ng-repeat="item in $ctrl.data.interaction.response.taskInfo.linkman"
+                                    ng-init="item.$index=$index">
+                                    <table class="common-table" ng-switch="$last">
+                                        <tbody>
+                                            <td class="name-td plr5 w_300">
+                                                <input class="eo-input" type="text" name="email" ng-model="item.email"
+                                                    ng-class="{'eo-input-error':(!item.email)}" maxlength="255"
+                                                    placeholder="{{'03025'|translate}}"
+                                                    ng-change="$ctrl.data.fun.last.linkman({$last:$last})" required>
+                                            </td>
+
+                                            <td class="operation-td plr5 w_300" ng-switch-when=false>
+                                                <label>
+                                                    <a class="iconfont icon-shanchu number-label"
+                                                        ng-click="$ctrl.data.fun.linkmanList.delete({$index:$index})"></a>
+                                                </label>
+                                            </td>
+                                        </tbody>
+                                    </table>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div><!-- end ngIf: $ctrl.interaction.response.taskInfo.taskStatus -->
+            </form>
+        </div>
+    </article>
+
+    <footer>
+        <div load-directive="$ctrl.data.fun.init(arg)">
+        </div>
+    </footer>
+
+</div>
+<div oc-lazy-load="$ctrl.data.constant.lazyload"></div>

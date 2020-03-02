@@ -1,0 +1,30 @@
+<div>
+    <div class="forget-default">
+        <header>
+            <p>
+                <label>{{'03025'|translate}}</label>
+            </p>
+        </header>
+        <article>
+            <form name="forgetForm">
+                <ul>
+                    <li>
+                        <input class="eo-input" name="email" type="text"
+                            data-ng-model="$ctrl.data.interaction.request.email" placeholder="{{'0306'|translate}}"
+                            ng-pattern="/^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/"
+                            uib-popover='{{$ctrl.data.info.alert}}' popover-trigger="focus" popover-placement="right"
+                            ng-class="{'eo-input-error':forgetForm.email.$invalid&&(forgetForm.email.$dirty||$ctrl.data.info.template.submited)}"
+                            maxlength="64" required />
+                    </li>
+                    <li>
+                        <label></label>
+                        <button
+                            ng-class="{'eo-button-success':forgetForm.$valid,'eo-button-default':forgetForm.$invalid}"
+                            data-ng-click="$ctrl.data.fun.send()">{{'351'|translate}}</button>
+                    </li>
+                </ul>
+            </form>
+        </article>
+    </div>
+
+</div>

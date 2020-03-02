@@ -1,0 +1,44 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "11391518",
+      "name": "闹钟",
+      "font_class": "naozhong",
+      "unicode": "e638",
+      "unicode_decimal": 58936
+    },
+    {
+      "icon_id": "11391552",
+      "name": "私信",
+      "font_class": "sixin",
+      "unicode": "e639",
+      "unicode_decimal": 58937
+    },
+    {
+      "icon_id": "11399523",
+      "name": "退出",
+      "font_class": "tuichu",
+      "unicode": "e62e",
+      "unicode_decimal": 58926
+    },
+    {
+      "icon_id": "11399551",
+      "name": "开始节点",
+      "font_class": "kaishijiedian",
+      "unicode": "e632",
+      "unicode_decimal": 58930
+    },
+    {
+      "icon_id": "11399552",
+      "name": "结束节点",
+      "font_class": "jieshujiedian",
+      "unicode": "e633",
+      "unicode_decimal": 58931
+    }
+  ]
+}

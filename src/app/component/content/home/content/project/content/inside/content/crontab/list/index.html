@@ -1,0 +1,174 @@
+<div class="home-project-inside-list home-project-inside-crontab-list home-project-inside-div">
+
+    <header>
+
+        <ul class="title-ul">
+
+            <li class="btn-group-li pull-left" ng-if="$ctrl.powerObject.edit">
+
+                <a class="eo-button-success common-btn" data-ng-click="$ctrl.data.fun.edit()"
+                    ng-show="!$ctrl.data.info.batch.disable">
+
+                    <span class="iconfont icon-tianjia"></span><span class="btn-name">{{'012170'|translate}}</span>
+
+                </a>
+
+                <a class="common-btn default-btn" data-ng-click="$ctrl.data.fun.batch.default()"
+                    ng-if="!$ctrl.data.info.batch.disable">
+
+                    <span class="iconfont icon-check1"></span><span class="btn-name">{{'012111'|translate}}</span>
+
+                </a>
+
+                <a class="common-btn default-btn" data-ng-click="$ctrl.data.info.batch.disable=false"
+                    ng-if="$ctrl.data.info.batch.disable">
+
+                    <span class="iconfont icon-close"></span><span class="btn-name">{{'012112'|translate}}</span>
+
+                </a>
+
+                <a class="common-btn default-btn" data-ng-click="$ctrl.data.fun.batch.delete()"
+                    ng-if="$ctrl.data.info.batch.disable">
+
+                    <span class="iconfont icon-shanchu"></span><span class="btn-name">{{'012113'|translate}}</span>
+
+                </a>
+                <a class="common-btn default-btn" data-ng-click="$ctrl.data.fun.batch.pause()"
+                    ng-if="$ctrl.data.info.batch.disable">
+
+                    <span class="iconfont icon-jieshujiedian"></span><span
+                        class="btn-name">{{'0121125'|translate}}</span>
+
+                </a>
+                <a class="common-btn default-btn" data-ng-click="$ctrl.data.fun.batch.resume()"
+                    ng-if="$ctrl.data.info.batch.disable">
+
+                    <span class="iconfont icon-kaishijiedian"></span><span
+                        class="btn-name">{{'0121126'|translate}}</span>
+
+                </a>
+
+            </li>
+
+            <li class="divide-li pull-left" ng-if="$ctrl.powerObject.edit"><span></span></li>
+
+            <li class="search-li pull-left">
+
+                <form name="searchForm">
+
+                    <ul class="search-function-ul">
+
+                        <li class="search-input-li">
+
+                            <input class="eo-input" type="text" placeholder="{{'012171'|translate}}"
+                                data-ng-model="$ctrl.data.interaction.request.tips" required>
+
+                        </li>
+
+                        <li class="search-btn-li">
+
+                            <button class="iconfont icon-sousuo" data-ng-click="$ctrl.data.fun.search()"></button>
+
+                        </li>
+
+                    </ul>
+
+                </form>
+
+            </li>
+
+        </ul>
+
+    </header>
+
+    <article class="first-level-article" ng-class="{'only-read-article':!$ctrl.powerObject.edit}">
+        <div class="thead_container_ldcc">
+            <table style="background-color: #f8f8f8;">
+                <thead>
+                    <tr>
+                        <th class="po_re w_250"><span>{{'012172'|translate}}</span>
+                            <div class="divide_line_ldcc ccr">&nbsp;</div>
+                        </th>
+                        <th class="po_re w_200">
+                            <span>{{'012173'|translate}}</span>
+                            <div class="divide_line_ldcc ccr">&nbsp;</div>
+                        </th>
+                        <th class="po_re w_50" style="padding-left: 5px"><span>{{'012174'|translate}}</span>
+                            <div class="divide_line_ldcc ccr">&nbsp;</div>
+                        </th>
+                        <th class="po_re w_150"><span>{{'012175'|translate}}</span>
+                            <div class="divide_line_ldcc ccr">&nbsp;</div>
+                        </th>
+                        <th class="po_re w_150" ng-if="$ctrl.powerObject.edit"><span>{{'012176'|translate}}</span>
+                            <div class="divide_line_ldcc ccr">&nbsp;</div>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="thead_container_ldcc">
+            <table>
+                <tbody>
+
+                    <tr data-ng-repeat="item in $ctrl.data.service.home.envObject.object.model"
+                        data-ng-click="$ctrl.data.fun.enter({item:item,$index:$index})"
+                        ng-class="{'elem-active':item.isClick&&$ctrl.data.info.batch.disable}">
+
+                        <td class="w_250">{{item.name}}</td>
+
+                        <td class="w_200">{{item.date}}</td>
+
+                        <td class="w_50" style="padding-left: 2px" ng-if="item.status == '0'">启用</td>
+                        <td class="w_50" style="padding-left: 2px" ng-if="item.status == '1'">停用</td>
+
+                        <td class="w_150">{{item.executetime}}</td>
+
+                        <td class="operate-td  w_150" ng-if="$ctrl.powerObject.edit">
+                            <div>
+                                <!-- ngIf: $ctrl.authorityObject['operate'] --><button class="eo-operate-btn"
+                                    ng-click="$ctrl.data.fun.edit({item:item,$event:$event})">编辑</button>
+                                <!-- end ngIf: $ctrl.authorityObject['operate'] -->
+                                <!-- ngIf: $ctrl.authorityObject['download'] -->
+                                <button class="eo-operate-btn"
+                                    ng-click="$ctrl.data.fun.history({item:item,$event:$event})">历史</button>
+                                <!-- end ngIf: $ctrl.authorityObject['download'] -->
+                                <div ng-mouseleave="item.clickMore=false;" class="more-btn eo-operate-btn po_re"
+                                    ng-click="$ctrl.data.fun.showMore({item:item,$event:$event,index:$index})">更多<span
+                                        class="more-btn-icon iconfont icon-xiangxia"></span>
+                                    <ul class="more-function n_dv_c n_list1_style po_ab" ng-show="item.clickMore==true">
+                                        <li class="eo_theme_gd_li_fli"
+                                            ng-click="$ctrl.data.fun.execute({item:item,$index:$outerIndex,$event:$event})">
+                                            执行</li>
+                                        <li ng-if="item.status==0" class="eo_theme_gd_li_fli"
+                                            ng-click="$ctrl.data.fun.pause({item:item,$index:$outerIndex,$event:$event})">
+                                            <button>暂停</button>
+                                        </li>
+                                        <li ng-if="item.status==1" class="eo_theme_gd_li_fli"
+                                            ng-click="$ctrl.data.fun.resume({item:item,$index:$outerIndex,$event:$event})">
+                                            <button>启动</button>
+                                        </li>
+                                        <li class="eo_theme_gd_li_fli"
+                                            ng-click="$ctrl.data.fun.delete({item:item,$index:$outerIndex,$event:$event})">
+                                            删除</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </article>
+
+    <footer>
+
+        <div load-directive="$ctrl.data.fun.init(arg)">
+
+        </div>
+
+    </footer>
+
+</div>

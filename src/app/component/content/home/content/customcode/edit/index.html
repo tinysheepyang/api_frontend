@@ -1,0 +1,48 @@
+<menu-common-component main-object="$ctrl.component.menuObject">
+    <ul class="common_menu_ul common-menu-fixed-seperate">
+        <li class="pull-left">
+            <p class="common-btn-list common-btn-list-first">
+                <button class="common-btn" ng-click="$ctrl.data.fun.back()">
+                    <span class="iconfont icon-xiangzuo pull-left"></span><span>返回函数列表</span>
+                </button>
+            </p>
+        </li>
+        <li class="pull-left ml10">
+            <p class="common-btn-list">
+                <button class="common-btn danlan_theme_btn_success" ng-click="$ctrl.data.fun.confirm()">
+                    </span><span>保存</span>
+                </button>
+            </p>
+        </li>
+
+
+    </ul>
+</menu-common-component>
+
+<section>
+    <form class="content">
+        <!--函数描述、函数名称开始-->
+        <div class="danlan-tab-container">
+            <div class="f_row f_ac"><b class="w_100">函数描述</b> <input autocomplete="off" class="w_500 danlan-input"
+                    type="text" name="functionName" ng-model="$ctrl.data.info.functionName" maxlength="255" required="">
+            </div>
+            <div class="f_row f_ac mt10"><b class="w_100">函数调用名称</b>
+                <div class="f_row f_ac w_500"><span class="c999 mr5">danlan_globalFunction_</span> <input
+                        autocomplete="off" class="danlan-input w_100percent" ng-pattern="/^[A-Za-z_$][A-Za-z0-9_$]*$/"
+                        placeholder="英文、数字、下划线的组合，并且首字符不能是数字" type="text" name="functionKey"
+                        ng-model="$ctrl.data.info.functionKey" maxlength="255" required=""
+                        ng-change="$ctrl.data.fun.editFunctionKey()" /></div>
+            </div>
+        </div>
+        <!--函数描述、函数名称结束-->
+
+        <!--函数主体部分开始-->
+        <p>
+            <textarea ng-model="$ctrl.data.info.content"></textarea>
+        </p>
+
+        <p>Result:</p>
+        <pre class="language-python"><code class="language-python"></code></pre>
+        <!--函数主体部分结束-->
+    </form>
+</section>

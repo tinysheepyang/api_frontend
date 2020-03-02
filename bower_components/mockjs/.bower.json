@@ -1,0 +1,35 @@
+{
+  "name": "mockjs",
+  "title": "Mock.js",
+  "main": "dist/mock.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src",
+    "test",
+    "site",
+    "plugins",
+    "package.json",
+    "gulpfile.js",
+    "AUTHORS.txt",
+    "CONTRIBUTING.md",
+    "HISTORY.md",
+    "CHANGELOG.md",
+    "README.md",
+    "LICENSE"
+  ],
+  "devDependencies": {},
+  "homepage": "https://github.com/nuysoft/Mock",
+  "version": "1.0.1-beta3",
+  "_release": "1.0.1-beta3",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.0.1-beta3",
+    "commit": "9aa7e25966dd8f11471fa94bd8e1d31f46b7dca8"
+  },
+  "_source": "https://github.com/nuysoft/Mock.git",
+  "_target": "1.0.1-beta3",
+  "_originalSource": "mockjs"
+}

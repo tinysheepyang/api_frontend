@@ -1,0 +1,11 @@
+//author：蓝城兄弟信息技术有限公司
+database-team {
+    .database-team {
+        @extend %DATABASE-VIEW-STYLE;
+        margin-left:$HOME-SIDEBAR-LEFT;
+        padding:10px 5px;
+        article {
+            @extend %TEAM-ARTICLE-STYLE;
+        }
+    }
+}

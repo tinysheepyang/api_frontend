@@ -1,0 +1,53 @@
+.f {
+    font: 14px/1 "sans-serif";
+}
+
+.s {
+    text-indent: 2em;
+}
+
+.s1 {
+    text-indent: 4em;
+}
+
+.bo {
+    margin-bottom: 20px;
+}
+
+.d1 {
+    padding: 10px 0;
+}
+
+img {
+    height: 700px;
+}
+
+.note {
+    background-color: white;
+
+    .content {
+        padding: 38px 48px 0px;
+
+        .instructions {
+            h2 {
+                padding: 8px 0;
+                border-bottom: 1px #f7efef solid;
+            }
+
+            .describe {
+                padding: 15px 0;
+                border-bottom: 1px #f7efef solid;
+            }
+        }
+
+        .foot {
+            padding: 15px 0;
+            border-bottom: 1px #f7efef solid;
+            margin-top: 200px;
+        }
+
+
+    }
+
+
+}
