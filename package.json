@@ -47,7 +47,7 @@
     "gulp-watch": "^5.0.1",
     "imagemin-pngquant": "^4.2.0",
     "jshint": "^2.9.1",
-    "lodash": "^4.3.0",
+    "lodash": "^4.17.21",
     "prism": "^4.1.2",
     "wiredep": "^2.2.2"
   },
