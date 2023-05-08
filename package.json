@@ -5,7 +5,7 @@
   "main": "gulpfile.js",
   "devDependencies": {
     "babel-cli": "^6.0.0",
-    "browser-sync": "^2.10.0",
+    "browser-sync": "^2.29.1",
     "browser-sync-spa": "^1.0.3",
     "del": "^2.2.0",
     "event-stream": "^3.3.2",
