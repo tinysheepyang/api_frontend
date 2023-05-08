@@ -49,7 +49,7 @@
     "jshint": "^2.9.1",
     "lodash": "^4.3.0",
     "prism": "^4.1.2",
-    "wiredep": "^2.2.2"
+    "wiredep": "^4.0.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
